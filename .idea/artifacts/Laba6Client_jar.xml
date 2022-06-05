@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Laba6Client:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Laba6Client_jar</output-path>
+    <root id="archive" name="Laba6Client.jar">
+      <element id="module-output" name="Laba6Client" />
+    </root>
+  </artifact>
+</component>
