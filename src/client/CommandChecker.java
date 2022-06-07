@@ -32,21 +32,21 @@ public class CommandChecker {
             try {
                 switch (command) {
                     case "help":
-                        request = new Request(CommandList.HELP, null, Client.userLogin);
+                        request = new Request(CommandList.HELP, null, Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "info":
-                        request = new Request(CommandList.INFO, null, Client.userLogin);
+                        request = new Request(CommandList.INFO, null, Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "show":
-                        request = new Request(CommandList.SHOW, null, Client.userLogin);
+                        request = new Request(CommandList.SHOW, null, Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "add":
                         List<String> arg = new ArrayList<>();
                         add(arg);
-                        request = new Request(CommandList.ADD, new Pack(arg, null), Client.userLogin);
+                        request = new Request(CommandList.ADD, new Pack(arg, null), Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "update":
@@ -54,13 +54,13 @@ public class CommandChecker {
                         List<String> updArg = new ArrayList<>();
                         updArg.add(element);
                         update(updArg, element);
-                        request = new Request(CommandList.UPDATE, new Pack(updArg, values[1]), Client.userLogin);
+                        request = new Request(CommandList.UPDATE, new Pack(updArg, values[1]), Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "remove_by_id":
                         try {
                             long id = Long.parseLong(values[1]);
-                            request = new Request(CommandList.REMOVE_BY_ID, new Pack(null, values[1]), Client.userLogin);
+                            request = new Request(CommandList.REMOVE_BY_ID, new Pack(null, values[1]), Client.userLogin, Client.password);
                             sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                             break;
                         } catch (NumberFormatException e){
@@ -88,30 +88,30 @@ public class CommandChecker {
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        request = new Request(CommandList.EXECUTE, new Pack(null, values[1]), Client.userLogin);
+                        request = new Request(CommandList.EXECUTE, new Pack(null, values[1]), Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "add_if_max":
                         if (values.length > 1) {
                             List<String> argMax = new ArrayList<>();
                             add(argMax);
-                            request = new Request(CommandList.ADD_IF_MAX, new Pack(argMax, values[1]), Client.userLogin);
+                            request = new Request(CommandList.ADD_IF_MAX, new Pack(argMax, values[1]), Client.userLogin, Client.password);
                             sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         } else {
                             System.out.println("Вы не ввели аргументы!");
                         }
                         break;
                     case "max_by_real_hero":
-                        request = new Request(CommandList.MAX_BY_REAL_HERO, null, Client.userLogin);
+                        request = new Request(CommandList.MAX_BY_REAL_HERO, null, Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "history":
-                        request = new Request(CommandList.HISTORY, null, Client.userLogin);
+                        request = new Request(CommandList.HISTORY, null, Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "filter_contains_name":
                         if(values.length>1) {
-                            request = new Request(CommandList.FILTER, new Pack(null, values[1]), Client.userLogin);
+                            request = new Request(CommandList.FILTER, new Pack(null, values[1]), Client.userLogin, Client.password);
                             sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                             break;
                         } else {
@@ -119,11 +119,11 @@ public class CommandChecker {
                             check();
                         }
                     case "print_descending":
-                        request = new Request(CommandList.PRINT_DESCENDING, null, Client.userLogin);
+                        request = new Request(CommandList.PRINT_DESCENDING, null, Client.userLogin, Client.password);
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "exit":
-                        request = new Request(CommandList.EXIT, null, Client.userLogin);
+                        request = new Request(CommandList.EXIT, null, Client.userLogin, Client.password);
                         sender.exitFlag = true;
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         socket.close();
@@ -133,7 +133,7 @@ public class CommandChecker {
                         if(values.length>1) {
                             List<String> tag = new ArrayList<>();
                             tag.add(values[1]);
-                            request = new Request(CommandList.REMOVE_GREATER, new Pack(tag, values[2]), Client.userLogin);
+                            request = new Request(CommandList.REMOVE_GREATER, new Pack(tag, values[2]), Client.userLogin, Client.password);
                             sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                             break;
                         } else {

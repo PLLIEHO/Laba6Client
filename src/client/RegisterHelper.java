@@ -25,8 +25,9 @@ public class RegisterHelper {
             loginArgs.add(login);
             loginArgs.add(password);
             Client.userLogin = login;
+            Client.password = password;
             Sender sender = new Sender();
-            sender.send(serializer.serialize(new Request(CommandList.SIGN_IN, new Pack(loginArgs, null), Client.userLogin)).toByteArray(), address, socket);
+            sender.send(serializer.serialize(new Request(CommandList.SIGN_IN, new Pack(loginArgs, null), Client.userLogin, Client.password)).toByteArray(), address, socket);
             return true;
         } else if(answer.equals("нет")){
             System.out.println("Введите новый логин...");
@@ -38,8 +39,9 @@ public class RegisterHelper {
             loginArgs.add(login);
             loginArgs.add(password);
             Client.userLogin = login;
+            Client.password = password;
             Sender sender = new Sender();
-            sender.send(serializer.serialize(new Request(CommandList.SIGN_UP, new Pack(loginArgs, null), Client.userLogin)).toByteArray(), address, socket);
+            sender.send(serializer.serialize(new Request(CommandList.SIGN_UP, new Pack(loginArgs, null), Client.userLogin, Client.password)).toByteArray(), address, socket);
             return true;
         } else {
             System.out.println("Ответ не распознан.");

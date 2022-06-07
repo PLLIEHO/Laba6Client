@@ -7,10 +7,12 @@ public class Request implements Serializable {
     private CommandList command;
     private Pack argument;
     private String userLogin;
-    public Request(CommandList command, Pack argument, String userLogin){
+    private String password;
+    public Request(CommandList command, Pack argument, String userLogin, String password){
         this.command = command;
         this.argument = argument;
         this.userLogin = userLogin;
+        this.password = password;
     }
     public String getUserLogin(){
         return userLogin;

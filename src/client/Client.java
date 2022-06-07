@@ -13,6 +13,7 @@ public class Client {
     private InetAddress address;
     public static int PORT;
     public static String userLogin;
+    public static String password;
 
     public Client() throws UnknownHostException, SocketException {
     }
