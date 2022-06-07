@@ -12,6 +12,7 @@ public class Client {
     private final DatagramSocket socket = new DatagramSocket();
     private InetAddress address;
     public static int PORT;
+    public static String userLogin;
 
     public Client() throws UnknownHostException, SocketException {
     }
@@ -50,6 +51,7 @@ public class Client {
             System.out.println("Порт введен неверно. Повторите ввод.");
             start();
         }
+        new RegisterHelper().register(address, socket);
 
         CommandChecker checker = new CommandChecker(address, socket);
         checker.check();

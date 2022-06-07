@@ -15,7 +15,10 @@ public enum CommandList {
     HISTORY("history"),
     MAX_BY_REAL_HERO("max_by_real_hero"),
     FILTER("filter_contains_name"),
+    SIGN_IN("sign_in"),
+    SIGN_UP("sign_up"),
     PRINT_DESCENDING("print_descending");
+
 
     private final String name;
     private CommandList(String name){

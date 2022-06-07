@@ -35,10 +35,11 @@ public class Sender {
                         Answer answer = (Answer) new Serializer().deserialize(packetIn.getData());
 
                         Serializer serializer = new Serializer();
-                        byte[] byteApproval = serializer.serialize(new Request(null, new Pack(null, approvalCreator(toServer)))).toByteArray();
+                        byte[] byteApproval = serializer.serialize(new Request(null, new Pack(null, approvalCreator(toServer)), Client.userLogin)).toByteArray();
                         socket.send(new DatagramPacket(byteApproval, byteApproval.length, address, Client.PORT));
                         System.out.println("Подтверждение отправлено.");
                         System.out.println(answer.getStr());
+                        loginApproval(answer, address, socket);
                         break;
                     } catch (SocketTimeoutException e){
                         if(i!=10){
@@ -61,5 +62,18 @@ public class Sender {
     }
     private String approvalCreator(DatagramPacket toServer){
         return toServer.getAddress().getHostAddress();
+    }
+
+    private void loginApproval(Answer answer, InetAddress address, DatagramSocket socket) throws IOException {
+        if(answer.getStr().equals("Entry denied! Password is wrong")){
+            Client.userLogin = null;
+            new RegisterHelper().register(address, socket);
+        } else if(answer.getStr().equals("No such user detected. Register yourself firstly.")){
+            Client.userLogin = null;
+            new RegisterHelper().register(address, socket);
+        } else if(answer.getStr().equals("This login was already taken. Try again")) {
+            Client.userLogin = null;
+            new RegisterHelper().register(address, socket);
+        }
     }
 }

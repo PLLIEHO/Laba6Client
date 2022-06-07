@@ -1,5 +1,7 @@
 package common;
 
+import client.Client;
+
 import java.io.Serializable;
 import java.util.List;
 
