@@ -92,13 +92,13 @@ public class CommandChecker {
                         sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         break;
                     case "add_if_max":
-                        if (values.length > 1) {
+                        if (values.length > 1&&(values[1].equals("coordinates_x")||values[1].equals("coordinates_y")||values[1].equals("impactspeed"))) {
                             List<String> argMax = new ArrayList<>();
                             add(argMax);
                             request = new Request(CommandList.ADD_IF_MAX, new Pack(argMax, values[1]), Client.userLogin, Client.password);
                             sender.send(serializer.serialize(this.request).toByteArray(), address, socket);
                         } else {
-                            System.out.println("Вы не ввели аргументы!");
+                            System.out.println("Вы не ввели аргументы, или ввели неправильные.");
                         }
                         break;
                     case "max_by_real_hero":
